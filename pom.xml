@@ -5,6 +5,8 @@
 	<packaging>pom</packaging>
 	<modules>
 		<module>tools-springcloud</module>
+        <module>Tools-DesignPatterns</module>
+		<module>tools-designPatterns</module>
 	</modules>
 
 	<parent>
