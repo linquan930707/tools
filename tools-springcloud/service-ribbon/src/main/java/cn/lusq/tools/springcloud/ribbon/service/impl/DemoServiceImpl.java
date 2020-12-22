@@ -17,6 +17,6 @@ public class DemoServiceImpl implements DemoService {
     private RestTemplate restTemplate;
     @Override
     public String hi(String name) {
-        return restTemplate.getForObject("http://SERVICE-HI/hi?name="+name,String.class);
+        return restTemplate.getForObject("http://HI-SERVICE/hi?name="+name,String.class);
     }
 }
