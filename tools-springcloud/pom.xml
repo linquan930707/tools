@@ -18,6 +18,7 @@
         <module>hi-service</module>
         <module>service-feign</module>
         <module>service-zuul</module>
+        <module>zuul-service</module>
     </modules>
 
 

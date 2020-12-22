@@ -1,4 +1,4 @@
-package cn.lusq.tools.springcloud.zuul;
+package zuul;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.cloud.client.SpringCloudApplication;

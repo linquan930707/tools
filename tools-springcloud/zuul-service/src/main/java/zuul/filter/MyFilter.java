@@ -1,4 +1,4 @@
-package cn.lusq.tools.springcloud.zuul.filter;
+package zuul.filter;
 
 import com.netflix.zuul.ZuulFilter;
 import com.netflix.zuul.context.RequestContext;
