@@ -5,7 +5,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
 /**
- * 陆书勤
+ *  lusq
  * 2020/12/22 14:16
  */
 @FeignClient(value = "hi-service")

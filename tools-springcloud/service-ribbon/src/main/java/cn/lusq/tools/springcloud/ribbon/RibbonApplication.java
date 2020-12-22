@@ -8,7 +8,7 @@ import org.springframework.context.annotation.Bean;
 import org.springframework.web.client.RestTemplate;
 
 /**
- * 陆书勤
+ * lusq
  * 2020/12/19 16:14
  */
 @EnableEurekaClient
