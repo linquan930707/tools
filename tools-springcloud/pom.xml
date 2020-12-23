@@ -19,6 +19,8 @@
         <module>service-feign</module>
         <module>service-zuul</module>
         <module>zuul-service</module>
+        <module>config-service</module>
+        <module>service-configClient</module>
     </modules>
 
 
