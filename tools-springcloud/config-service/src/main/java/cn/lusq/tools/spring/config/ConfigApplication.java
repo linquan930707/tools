@@ -1,7 +1,7 @@
 package cn.lusq.tools.spring.config;
 
 import org.springframework.boot.SpringApplication;
-import org.springframework.cloud.client.SpringCloudApplication;
+import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.cloud.config.server.EnableConfigServer;
 import org.springframework.cloud.netflix.eureka.EnableEurekaClient;
 
@@ -10,7 +10,7 @@ import org.springframework.cloud.netflix.eureka.EnableEurekaClient;
  * 2020/12/23 10:38
  */
 
-@SpringCloudApplication
+@SpringBootApplication
 @EnableEurekaClient
 @EnableConfigServer
 public class ConfigApplication {

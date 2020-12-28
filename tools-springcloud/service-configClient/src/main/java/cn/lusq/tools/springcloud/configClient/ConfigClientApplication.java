@@ -2,7 +2,7 @@ package cn.lusq.tools.springcloud.configClient;
 
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.boot.SpringApplication;
-import org.springframework.cloud.client.SpringCloudApplication;
+import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.cloud.netflix.eureka.EnableEurekaClient;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -11,7 +11,7 @@ import org.springframework.web.bind.annotation.RestController;
  * lusq
  * 2020/12/23 11:23
  */
-@SpringCloudApplication
+@SpringBootApplication
 @EnableEurekaClient
 @RestController
 public class ConfigClientApplication {
