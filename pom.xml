@@ -7,7 +7,8 @@
 		<module>tools-springcloud</module>
         <module>Tools-DesignPatterns</module>
 		<module>tools-designPatterns</module>
-	</modules>
+        <module>singleton</module>
+    </modules>
 
 	<parent>
 		<groupId>org.springframework.boot</groupId>
