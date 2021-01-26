@@ -8,6 +8,7 @@
         <module>Tools-DesignPatterns</module>
 		<module>tools-designPatterns</module>
         <module>singleton</module>
+        <module>tools-javaBase</module>
     </modules>
 
 	<parent>
