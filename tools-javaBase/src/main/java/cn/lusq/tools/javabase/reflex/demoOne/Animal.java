@@ -6,4 +6,8 @@ package cn.lusq.tools.javabase.reflex.demoOne;
  */
 public class Animal  implements Eat{
 
+    @Override
+    public void eat() {
+        System.out.println("eat");
+    }
 }
