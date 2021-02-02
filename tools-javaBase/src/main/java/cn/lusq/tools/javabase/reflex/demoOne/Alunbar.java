@@ -45,7 +45,7 @@ public class Alunbar {
             System.out.println(String.format("根据类获取已知构造函数，根据已知构造函数实例化类：%s",bird.toString()));
 
             Constructor<Bird> constructorTwo = birdClass.getConstructor(String.class, String.class);
-            Bird bird1 = constructorTwo.newInstance("ddd", "fff");
+            Bird birdTwo = constructorTwo.newInstance("ddd", "fff");
 
             Constructor<Bird> constructorZero = birdClass.getConstructor();
             Bird birdZero = constructorZero.newInstance();
