@@ -41,32 +41,31 @@ public class Alunbar {
             Constructor<Bird> constructor = birdClass.getConstructor(String.class);
             //获取构造函数参数的集合
 //            Class<?>[] parameterTypes = constructor.getParameterTypes();
-            Bird bird =(Bird)constructor.newInstance("sdfsdfs");
+            Bird bird =(Bird)constructor.newInstance("bird 执行有参构造方法");
             System.out.println(String.format("根据类获取已知构造函数，根据已知构造函数实例化类：%s",bird.toString()));
+
+            Constructor<Bird> constructorTwo = birdClass.getConstructor(String.class, String.class);
+            Bird bird1 = constructorTwo.newInstance("ddd", "fff");
+
+            Constructor<Bird> constructorZero = birdClass.getConstructor();
+            Bird birdZero = constructorZero.newInstance();
+
+
         } catch (NoSuchMethodException e) {
             e.printStackTrace();
         } catch (IllegalAccessException e) {
             e.printStackTrace();
-        } catch (InstantiationException e) {
-            e.printStackTrace();
         } catch (InvocationTargetException e) {
             e.printStackTrace();
+        } catch (InstantiationException e) {
+            e.printStackTrace();
         }
 
 
     }
 
-    private class Bird extends Animal implements Fly{
-        public Bird() {}
-        public Bird(String eat) {
-            System.out.println(eat);
-        }
-    }
 
-    private class Animal implements Eat{}
-    
-    private interface Eat{}
-    private interface Fly{}
+
     
     
 
