@@ -1,12 +1,14 @@
 package cn.lusq.tools.framerwork.httpUtil.HttpClient;
 
-import cn.lusq.tools.framerwork.httpUtil.HttpClient.HttpClientResult;
+import com.alibaba.fastjson.JSONObject;
+import org.apache.http.Header;
 import org.apache.http.HttpStatus;
 import org.apache.http.NameValuePair;
 import org.apache.http.client.config.RequestConfig;
 import org.apache.http.client.entity.UrlEncodedFormEntity;
 import org.apache.http.client.methods.*;
 import org.apache.http.client.utils.URIBuilder;
+import org.apache.http.entity.StringEntity;
 import org.apache.http.impl.client.CloseableHttpClient;
 import org.apache.http.impl.client.HttpClients;
 import org.apache.http.message.BasicNameValuePair;
@@ -151,15 +153,7 @@ public class HttpClientUtil {
          */
         RequestConfig requestConfig = RequestConfig.custom().setConnectTimeout(CONNECT_TIMEOUT).setSocketTimeout(SOCKET_TIMEOUT).build();
         httpPost.setConfig(requestConfig);
-        // 设置请求头
-		/*httpPost.setHeader("Cookie", "");
-		httpPost.setHeader("Connection", "keep-alive");
-		httpPost.setHeader("Accept", "application/json");
-		httpPost.setHeader("Accept-Language", "zh-CN,zh;q=0.9");
-		httpPost.setHeader("Accept-Encoding", "gzip, deflate, br");
-		httpPost.setHeader("User-Agent", "Mozilla/5.0 (Windows NT 10.0; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/65.0.3325.181 Safari/537.36");*/
         packageHeader(headers, httpPost);
-
         // 封装请求参数
         packageParam(params, httpPost);
 
@@ -260,7 +254,7 @@ public class HttpClientUtil {
             Set<Map.Entry<String, String>> entrySet = params.entrySet();
             for (Map.Entry<String, String> entry : entrySet) {
                 // 设置到请求头到HttpRequestBase对象中
-                httpMethod.setHeader(entry.getKey(), entry.getValue());
+                httpMethod.addHeader(entry.getKey(), entry.getValue());
             }
         }
     }
@@ -275,15 +269,23 @@ public class HttpClientUtil {
     public static void packageParam(Map<String, String> params, HttpEntityEnclosingRequestBase httpMethod)
             throws UnsupportedEncodingException {
         // 封装请求参数
-        if (params != null) {
-            List<NameValuePair> nvps = new ArrayList<NameValuePair>();
-            Set<Map.Entry<String, String>> entrySet = params.entrySet();
-            for (Map.Entry<String, String> entry : entrySet) {
-                nvps.add(new BasicNameValuePair(entry.getKey(), entry.getValue()));
+        Header header = httpMethod.getFirstHeader("Content-Type");
+        if(header.getValue().equals("application/json")){
+            String requestJsonStr = JSONObject.toJSONString(params);
+            StringEntity stringEntity = new StringEntity(requestJsonStr, ENCODING);
+//            stringEntity.setContentType("application/json; charset=utf-8");
+            httpMethod.setEntity(stringEntity);
+        }else {
+            //application/text-pain
+            if (params != null) {
+                List<NameValuePair> nvps = new ArrayList<NameValuePair>();
+                Set<Map.Entry<String, String>> entrySet = params.entrySet();
+                for (Map.Entry<String, String> entry : entrySet) {
+                    nvps.add(new BasicNameValuePair(entry.getKey(), entry.getValue()));
+                }
+                // 设置到请求的http对象中
+                httpMethod.setEntity(new UrlEncodedFormEntity(nvps, ENCODING));
             }
-
-            // 设置到请求的http对象中
-            httpMethod.setEntity(new UrlEncodedFormEntity(nvps, ENCODING));
         }
     }
 

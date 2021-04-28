@@ -7,6 +7,8 @@ import com.alibaba.fastjson.JSONObject;
 import java.io.*;
 import java.net.HttpURLConnection;
 import java.net.URL;
+import java.util.Map;
+import java.util.Set;
 
 /**
  *
@@ -19,7 +21,11 @@ public class JDKHttpUrlConnectionUtil {
      * 使用jdk自带的HttpURLConnection向URL发送POST请求并输出响应结果
      * 参数使用流传递，并且硬编码为字符串"name=XXX"的格式
      */
-    public static String post(String urlStr, String data){
+    public static String post(String urlStr, Map<String,String>paramer){
+       return post(urlStr,paramer,null);
+    }
+
+    public static String post(String urlStr, Map<String,String>paramer, Map<String,String> headers){
         try {
             //url?name=XX&&age=XX
             //建立连接
@@ -32,6 +38,11 @@ public class JDKHttpUrlConnectionUtil {
             connection.setConnectTimeout(3000);
             //设置请求头  heard数据
             connection.setRequestProperty("Content-Type", "application/json; charset=utf-8");
+            if(headers != null && !headers.isEmpty()){
+                for (String key : headers.keySet()){
+                    connection.setRequestProperty(key,headers.get(key));
+                }
+            }
             //需要输出
             connection.setDoOutput(true);
             //需要输入
@@ -43,7 +54,7 @@ public class JDKHttpUrlConnectionUtil {
             //建立输入流，向指向的URL传入参数
             DataOutputStream dataOutputStream = new DataOutputStream(connection.getOutputStream());
             //将字符串转换成json对象
-            JSONObject jsonObject = JSON.parseObject(data);
+            JSONObject jsonObject = JSONObject.parseObject(JSONObject.toJSONString(paramer));
             //写出json字符串
             dataOutputStream.writeBytes(jsonObject.toJSONString());
             //刷新对象输出流，将任何字节都写入潜在的流中
